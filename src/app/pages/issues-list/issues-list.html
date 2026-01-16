@@ -1,10 +1,28 @@
-<div class="">
-  <div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+<section class="products-section">
+  <div class=".container-list">
+    <div class="header-content">
+      <h1 class="page-title">Discover Our Products</h1>
+      <p class="page-subtitle">Premium quality products curated just for you</p>
+    </div>
+
+    <div class="search-container">
+      <input
+        type="text"
+        [ngModel]="searchTerm()"
+        (ngModelChange)="searchTerm.set($event)"
+        placeholder="Search products by title..."
+        class="search-input"
+      >
+    </div>
+
+    <div class="products-grid">
+      @for (product of filteredProducts(); track $index) {
+        <app-card [product]="product" (viewDetails)="handleViewDetails($event)"></app-card>
+      } @empty {
+        <div class="loading-state">
+          <p>No products available matching your search.</p>
+        </div>
+      }
     </div>
   </div>
-</div>
+</section>

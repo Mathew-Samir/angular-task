@@ -1,0 +1,22 @@
+<div class="product-card">
+  <div class="image-container">
+    <img [src]="product().image" [alt]="product().title" class="product-image">
+    <span class="category-badge">{{ product().category | titlecase }}</span>
+  </div>
+
+  <div class="card-content">
+    <h3 class="product-title">{{ product().title }}</h3>
+
+    <div class="rating-box">
+      <span class="stars">⭐{{ product().rating.rate }}</span>
+      <span class="reviews">({{ product().rating.count }} reviews)</span>
+    </div>
+
+    <!-- <p class="description">{{ product().description }}</p> -->
+
+    <div class="card-footer">
+      <span class="price">{{ product().price | currency }}</span>
+      <button class="buy-btn" (click)="onViewDetails()">View Details</button>
+    </div>
+  </div>
+</div>
