@@ -1,1 +1,53 @@
-<p>issue-details works!</p>
+<section class="details-section">
+  <div class="container">
+    <div class="navigation-header">
+      <button routerLink="/home" class="back-btn">
+        <span class="icon">←</span> Back to Home
+      </button>
+    </div>
+
+    @if (!product() && isLoading()) {
+      <div class="loading-state">
+        <p>Loading product details...</p>
+      </div>
+    }
+
+    @if (product()) {
+      <div class="product-details-container">
+        <div class="image-section">
+          <div class="image-wrapper">
+            <img [src]="product()?.image" [alt]="product()?.title" class="product-img">
+          </div>
+        </div>
+
+        <div class="info-section">
+          <span class="category">{{ product()?.category | titlecase }}</span>
+          <h1 class="title">{{ product()?.title }}</h1>
+
+          <div class="rating-box">
+            <span class="stars">⭐ {{ product()?.rating?.rate }}</span>
+            <span class="count">({{ product()?.rating?.count }} reviews)</span>
+          </div>
+
+          <div class="price-box">
+            <span class="price">{{ product()?.price | currency }}</span>
+          </div>
+
+          <div class="description-box">
+            <h3>Description</h3>
+            <p>{{ product()?.description }}</p>
+          </div>
+
+          <div class="actions">
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    } @else if (!isLoading()) {
+      <div class="error-state">
+        <p>Product not found.</p>
+        <button routerLink="/home" class="btn-primary">Return to Shop</button>
+      </div>
+    }
+  </div>
+</section>
