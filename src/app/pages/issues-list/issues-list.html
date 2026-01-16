@@ -1,1 +1,28 @@
-<p>issues-list works!</p>
+<section class="products-section">
+  <div class=".container-list">
+    <div class="header-content">
+      <h1 class="page-title">Discover Our Products</h1>
+      <p class="page-subtitle">Premium quality products curated just for you</p>
+    </div>
+
+    <div class="search-container">
+      <input
+        type="text"
+        [ngModel]="searchTerm()"
+        (ngModelChange)="searchTerm.set($event)"
+        placeholder="Search products by title..."
+        class="search-input"
+      >
+    </div>
+
+    <div class="products-grid">
+      @for (product of filteredProducts(); track $index) {
+        <app-card [product]="product" (viewDetails)="handleViewDetails($event)"></app-card>
+      } @empty {
+        <div class="loading-state">
+          <p>No products available matching your search.</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
